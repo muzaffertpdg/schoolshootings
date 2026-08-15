@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>K-12 School Shootings in the US — Aggregate Trends, Not Rankings</title>
+<meta name="description" content="Real, cited aggregate data on K-12 school shootings in the United States. No perpetrator names, no photos, no incident-level rankings — by design." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="ss-styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 21v-4a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v4"/>
+        <path d="M12 3v6"/>
+        <circle cx="12" cy="3" r="1"/>
+      </svg>
+      <span class="brand-name">K-12 School Shootings</span>
+    </div>
+    <nav class="header-nav">
+      <a href="#ethics-section" class="nav-link" data-scroll>Approach</a>
+      <a href="#trend-section" class="nav-link" data-scroll>The Trend</a>
+      <a href="#analysis-section" class="nav-link" data-scroll>Analysis</a>
+      <a href="#sources-section" class="nav-link" data-scroll>Sources</a>
+    </nav>
+    <span class="header-meta">United States &middot; 1970&ndash;Present</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      K-12 School Shooting Database &middot; CHDS, Naval Postgraduate School
+    </div>
+    <h1 class="hero-title">A Trend in Numbers, Not Names</h1>
+    <p class="hero-subtitle">
+      This page shows aggregate, cited data on K-12 school shootings in the United States since 1970. It contains <strong>no perpetrator names, no photos, and no incident-level ranking</strong> — that omission is deliberate, explained below, and grounded in the same research literature the rest of this page cites.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-value">2,069</span>
+        <span class="stat-label">recorded incidents since 1970</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">684</span>
+        <span class="stat-label">lives lost</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="decadeIncreasePct">0</span><span class="stat-unit">%</span>
+        <span class="stat-label">increase, 2004\u201313 decade to 2014\u201323 decade</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">154</span>
+        <span class="stat-label">meeting the narrower "active shooter" definition since 1999</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ethics-section">
+  <div class="section-header">
+    <p class="eyebrow">Before the data</p>
+    <h2>Why This Page Is Built the Way It Is</h2>
+  </div>
+  <div class="section-inner">
+    <div class="ethics-box">
+      <h3 id="ethicsTitle"></h3>
+      <p id="ethicsBody"></p>
+      <p class="ethics-citation" id="ethicsCitation"></p>
+      <p class="ethics-counterpoint" id="ethicsCounterpoint"></p>
+    </div>
+    <div class="toll-box">
+      <h3 id="tollTitle"></h3>
+      <p id="tollBody"></p>
+    </div>
+  </div>
+</section>
+
+<section id="trend-section">
+  <div class="section-header">
+    <p class="eyebrow">Observed — real, cited data</p>
+    <h2>The Decade-Over-Decade Trend</h2>
+    <p>Two real numbers from the same database, using the same methodology across both periods — which is what makes this comparison meaningful rather than an artifact of changing definitions.</p>
+  </div>
+  <div class="section-inner">
+    <div class="decade-chart-wrap">
+      <svg id="decadeChart" viewBox="0 0 700 320"></svg>
+    </div>
+
+    <p class="control-title">Specific, individually-cited reference years</p>
+    <div class="annual-refs-grid" id="annualRefsGrid"></div>
+
+    <div class="methodology-box">
+      <h3 id="methodTitle"></h3>
+      <p id="methodBody"></p>
+      <p class="mb-source" id="methodSource"></p>
+    </div>
+
+    <p class="control-title">The two definitions, since 1999</p>
+    <div class="definition-pair" id="definitionPair"></div>
+  </div>
+</section>
+
+<section id="analysis-section">
+  <div class="section-header">
+    <p class="eyebrow">Analysis</p>
+    <h2>What's Documented, and What's Still Disputed</h2>
+  </div>
+  <div class="section-inner">
+    <div class="analysis-grid" id="analysisGrid"></div>
+  </div>
+</section>
+
+<section id="sources-section">
+  <div class="section-header">
+    <p class="eyebrow">Sources</p>
+    <h2>Data Sources &amp; Citation</h2>
+  </div>
+  <div class="section-inner">
+    <div class="sources-list">
+      <div class="source-item">
+        <h4>K-12 School Shooting Database</h4>
+        <p>Riedman, D. Maintained by the Center for Homeland Defense and Security (CHDS), Naval Postgraduate School, in conjunction with FEMA. Primary source for all incident counts on this page.</p>
+        <a href="https://k12ssdb.org/" target="_blank" rel="noopener">k12ssdb.org</a>
+      </div>
+      <div class="source-item">
+        <h4>Contagion in Mass Killings and School Shootings</h4>
+        <p>Towers, S., G\u00f3mez-Li\u00e9vano, A., Khan, M., Mubayi, A., &amp; Castillo-Ch\u00e1vez, C. (2015). PLOS ONE, 10(7), e0117259. Basis for this site's decision not to rank or name incidents.</p>
+        <a href="https://doi.org/10.1371/journal.pone.0117259" target="_blank" rel="noopener">doi.org/10.1371/journal.pone.0117259</a>
+      </div>
+      <div class="source-item">
+        <h4>Mass killings in the United States from 2006 to 2013: social contagion or random clusters?</h4>
+        <p>Lankford, A., &amp; Tomek, S. (2017). Suicide and Life-Threatening Behavior. The counterpoint to the contagion finding above, cited for balance.</p>
+      </div>
+      <div class="source-item">
+        <h4>Sociodemographic and psychological characteristics of school shooters: a systematic review</h4>
+        <p>Minelli, M., Zappal\u00e0, A., Vayr, S., &amp; Santtila, P. (2026). Frontiers in Psychiatry. Basis for the "characteristics research is thinner than the discourse suggests" finding.</p>
+      </div>
+    </div>
+
+    <div class="support-note">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span>If this topic affects you personally: the 988 Suicide &amp; Crisis Lifeline (call or text 988) is available 24/7 in the US for anyone in emotional distress, not only crisis related to self-harm.</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 21v-4a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v4"/>
+      </svg>
+      <span>K-12 School Shootings</span>
+    </div>
+    <p class="footer-text">Aggregate, cited data only. No perpetrator names, no photos, no incident-level rankings — by design, not omission.</p>
+    <p class="footer-meta">Data: K-12 School Shooting Database (CHDS, Naval Postgraduate School) &middot; Last updated: August 2026</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
